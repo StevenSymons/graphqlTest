@@ -1,4 +1,6 @@
-const { ApolloServer, gql } = require('apollo-server');
+const { ApolloServer } = require("apollo-server");
+const { resolvers } = require("./resolvers");
+const { typeDefs } = require("./typeDefs");
 
 // ⚽️  Goal
 // --------
@@ -19,19 +21,6 @@ const { ApolloServer, gql } = require('apollo-server');
 // 4) Create a resolver function that returns the list of stores.
 // 5) Try out the GraphQL query in the GraphQL Playground (🚀 http://localhost:4000/)
 
-// Type definitions define the "shape" of your data and specify
-// which ways the data can be fetched from the GraphQL server.
-const typeDefs = gql`
-  type Query {
-    test: String
-  }
-`;
-
-// Resolvers define the technique for fetching the types in the
-// schema.
-const resolvers = {
-};
-
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
@@ -39,8 +28,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 // This `listen` method launches a web-server. Existing apps
 // can utilize middleware options.
-server.listen()
-  .then(({ url }) => {
-    console.log(`🚀  Food GraphQL Server ready at ${url}.
+server.listen().then(({ url }) => {
+  console.log(`🚀  Food GraphQL Server ready at ${url}.
 ⛄️  Go to this url to play with GraphQL in the GraphQL Playground.`);
-  });
+});
